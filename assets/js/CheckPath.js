@@ -21,55 +21,55 @@ storeCoordinate(7, 4, obstacles);
 ////////////////////////////////////////
 
 
-function CheckPoints(sx, sy, dx, dy,dirstp) {
+function CheckPoints(sx, sy, dx, dy,sDirStp,dDirStp) {
 debugger;
 DestinationPath=[];
 
 var stp;
 
-   storeCoordinate(dx, dy, DestinationPath,dirstp);
+   storeCoordinate(dx, dy, DestinationPath,dDirStp);
     while(true){
        
         if(sx == dx && sy == dy)
         {
-            storeCoordinate(dx, dy, DestinationPath,dirstp);
+            storeCoordinate(dx, dy, DestinationPath,dDirStp);
             Message.push({m: stp});
             return true;
         }
         if(dx > sx )
         {   
-            dx=dx-1;
+            dx--;
             stp="B";
-            dirstp="W";
-            storeCoordinate(dx, dy, DestinationPath,dirstp);
+            dDirStp="W";
+            storeCoordinate(dx, dy, DestinationPath,dDirStp);
             Message.push({m: stp});
             if(obstacles.some(value => { return value.x === dx && value.y === dy} ))
             return false;
         } 
         if(dx < sx )
         {   
-            dx=dx+1;
+            dx++;
             stp="F";
-            dirstp="E";
-            storeCoordinate(dx, dy, DestinationPath,dirstp);
+            dDirStp="E";
+            storeCoordinate(dx, dy, DestinationPath,dDirStp);
             Message.push({m: stp});
             if(obstacles.some(value => { return value.x === dx && value.y === dy} ))
             return false;
         } 
         if(sx == dx & dy>sy) {
-            dy=dy-1;
+            dy--;
             stp="B";
-            dirstp="S";
-            storeCoordinate(dx, dy, DestinationPath,dirstp);
+            dDirStp="S";
+            storeCoordinate(dx, dy, DestinationPath,dDirStp);
             Message.push({m: stp});
             if(obstacles.some(value => { return value.x === dx && value.y === dy} ))
             return false;
         }
         if(sx == dx & dy<sy) {
-            dy=dy+1;
+            dy++;
             stp="F";
-            dirstp="N";
-            storeCoordinate(dx, dy, DestinationPath,dirstp);
+            dDirStp="N";
+            storeCoordinate(dx, dy, DestinationPath,dDirStp);
             Message.push({m: stp});
             if(obstacles.some(value => { return value.x === dx && value.y === dy} ))
             return false;
@@ -78,8 +78,7 @@ var stp;
         
     }};
    
-
-
+    
 document.getElementById('compute').addEventListener('click', function() {
    
     result.innerText = "" ;
@@ -87,14 +86,15 @@ document.getElementById('compute').addEventListener('click', function() {
     var destination = document.getElementById('Destination').value;
     source = source.split(",");
     destination = destination.split(",");
-        let x = parseInt(source[0]), y = parseInt(source[1]), dirstp = source[2];
-        let dx = parseInt(destination[0]), dy = parseInt(destination[1]);  
+        let x = parseInt(source[0]), y = parseInt(source[1]), sDirStp = source[2];
+        let dx = parseInt(destination[0]), dy = parseInt(destination[1]), dDirStp = destination[2]; 
         
 
-    if (CheckPoints(x,y,dx,dy,dirstp))
+    if (CheckPoints(x,y,dx,dy,sDirStp,dDirStp))
     {
         result.innerHTML = '';
-        for (var i = 0; i < DestinationPath.length; i++) {
+        MessageValue.innerHTML='';
+        for (var i = DestinationPath.length-1; i >= 0; i--) {
            var Px = DestinationPath[i].x;
            var Py = DestinationPath[i].y;
            var d = DestinationPath[i].d;
@@ -102,14 +102,14 @@ document.getElementById('compute').addEventListener('click', function() {
           result.innerHTML += `(${Px},${Py},${d}) -->` ;
            
           }
-          for (var i = 0; i < Message.length; i++) {
+          for (var i = Message.length-1; i >= 0 ; i--) {
             var M = Message[i].m;
             MessageValue.innerHTML += `${M}` ;
            }
     } 
     else
        {
-        for (var i = 0; i < DestinationPath.length; i++) {
+        for (var i = DestinationPath.length-1; i >= 0; i--) {
            var Px = DestinationPath[i].x;
            var Py = DestinationPath[i].y;
            var d = DestinationPath[i].d;
@@ -120,6 +120,4 @@ document.getElementById('compute').addEventListener('click', function() {
           MessageValue.innerHTML = "STOPPED";
        }
   });
-
-
 

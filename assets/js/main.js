@@ -19,7 +19,7 @@ const str_dir = [ "N", "E", "S", "W" ];
   document.getElementById('compute').addEventListener('click', function() {
     var coodinatesvalue = document.getElementById('coodinates').value;
     var Messagevalue = document.getElementById('Message').value;
-    //if (coodinatesvalue & Messagevalue) {
+    //if (coodinatesvalue && Messagevalue) {
       compute(coodinatesvalue,Messagevalue);
     //}
   });
@@ -128,8 +128,6 @@ function compute(coodinatesvalue,Messagevalue)
             // throw Exception;  
         }
   }
-
-
 
   
 
