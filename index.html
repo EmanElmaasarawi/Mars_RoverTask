@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <!-- Content Type Meta tag -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <!--Responsive Viewport Meta tag-->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        
+		<title>Mars Rover</title>
+        
+		<!-- Roboto font embed -->
+		<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+
+		<!-- Stylesheets -->
+		<link rel="stylesheet" type="text/css" href="assets/css/reset.min.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	</head>
+	<body>
+
+		<header>
+			
+		</header>
+
+		<div class="container">
+           <div>
+            <input type="text" placeholder="Enter source x,y" id="Source">
+            <input type="text" placeholder="Enter destination x,y" id="Destination">
+
+            <button id="compute" title="current coordinates">
+                current coordinates
+            </button>
+
+			<label class="nobordar">Result: </label> <label id="result" title="Result: " ></label>
+			<label class="nobordar">MessageValue : </label> <label id="MessageValue" title="MessageValue : "></label>
+        	</div>
+			
+		</div>
+
+		<!-- JavaScripts -->
+		<script src="assets/js/CheckPath.js"></script>
+	</body>
+</html>
